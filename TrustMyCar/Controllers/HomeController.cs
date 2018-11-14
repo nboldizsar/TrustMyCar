@@ -10,15 +10,20 @@ namespace TrustMyCar.Controllers
 {
     public class HomeController : Controller
     {
+
+        #region GET
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult MyCars()
         {
-            ViewData["Message"] = "Your application description page.";
+            return View();
+        }
 
+        public IActionResult CarDetail()
+        {
             return View();
         }
 
@@ -28,11 +33,10 @@ namespace TrustMyCar.Controllers
 
             return View();
         }
+        #endregion GET
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        #region POST
+        #endregion POST
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
