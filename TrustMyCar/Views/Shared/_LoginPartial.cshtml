@@ -1,7 +1,7 @@
 @using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<TrustMyCar.BussinessObjects.User.BaseUser> SignInManager
+@inject UserManager<TrustMyCar.BussinessObjects.User.BaseUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
