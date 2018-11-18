@@ -1,7 +1,53 @@
-﻿
+﻿@model IEnumerable<TrustMyCar.BussinessObjects.CarData.Car>
+
 @{
     ViewData["Title"] = "MyCars";
 }
 
 <h2>MyCars</h2>
 
+<p>
+    <a asp-action="CarDetail">Új autó felvétele</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img width="150" src="@Url.Action("GetImage", new {id=item.Id})" /> 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                <a asp-action="CarEdit" asp-route-id="@item.Id">Módosítás</a> |
+                <a asp-action="ServiceEventList" asp-route-id="@item.Id">Szervízadatok</a> |
+                <a asp-action="OperatingCostList" asp-route-id="@item.Id">Költség adatok</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

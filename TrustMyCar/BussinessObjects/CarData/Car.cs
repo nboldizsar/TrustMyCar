@@ -24,5 +24,13 @@ namespace TrustMyCar.BussinessObjects.CarData
         public int CubicCapacity { get; set; }
         public FuelType FuelType { get; set; }
         public string Description { get; set; }
+        public byte[] Image { get; set; }
+        public string ContentType { get; set; }
+
+        public Car()
+        {
+            this.ServiceEvents = new List<ServiceEvent>();
+            this.OperatingCosts = new List<OperatingCost>();
+        }
     }
 }

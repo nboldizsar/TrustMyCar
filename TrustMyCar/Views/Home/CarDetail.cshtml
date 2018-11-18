@@ -4,72 +4,71 @@
     ViewData["Title"] = "Autó adatok";
 }
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Autó adatok</title>
-</head>
-<body>
+@using (Html.BeginForm("CarDetail", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @: Márka <br />
+    <input type="text" name="brand" value="@Model.Brand" /> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Brand)
+    </font> <br />
 
-    @using (Html.BeginForm("AddNewCar", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @: Márka <br />
-        <input type="text" name="brand" value="@Model.Brand" /> <br />
-        <font color="red">
-            @Html.ValidationMessageFor(m => m.Brand)
-        </font> <br />
+    @: Modell <br />
+    <input type="text" name="carmodel" value="@Model.CarModel" /> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.CarModel)
+    </font> <br />
 
-        @: Modell <br />
-        <input type="text" name="model" value="@Model.Model" /> <br />
-        <font color="red">
-            @Html.ValidationMessageFor(m => m.Model)
-        </font> <br />
+    @: Típus <br />
+    <input type="text" name="type" value="@Model.Type" /> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Type)
+    </font> <br />
 
-        @: Típus <br />
-        <input type="number" name="type" value="@Model.Type" /> <br />
-        <font color="red">
-            @Html.ValidationMessageFor(m => m.Type)
-        </font> <br />
+    @: Motor mérete <br />
+    <input type="number" name="cubiccapacity" value="@Model.CubicCapacity" /> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.CubicCapacity)
+    </font> <br />
 
-        @: Motor mérete <br />
-        <input type="text" name="cubiccapacity" value="@Model.CubicCapacity" /> <br />
-        <font color="red">
-            @Html.ValidationMessageFor(m => m.CubicCapacity)
-        </font> <br />
+    @: Lóerő <br />
+    <input type="number" name="power" value="@Model.Power" /> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Power)
+    </font> <br />
 
-        @: Lóerő <br />
-        <input type="number" name="power" value="@Model.Power" /> <br />
-        <font color="red">
-            @Html.ValidationMessageFor(m => m.Power)
-        </font> <br />
+    @: Kilóméter állás <br />
+    <input type="number" name="kilometer" value="@Model.Kilometer" /> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Kilometer)
+    </font> <br />
 
-        @: Kilóméter állás <br />
-        <input type="number" name="kilometer" value="@Model.Kilometer" /> <br />
-        <font color="red">
-            @Html.ValidationMessageFor(m => m.Kilometer)
-        </font> <br />
+    @: Gyártási év <br />
+    <input type="date" name="date" value="@Model.Date" /> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Date)
+    </font> <br />
 
-        @:  Üzemanyag <br />
-        <input type="number" name="fueltype" value="@Model.FuelType" /> <br />
-        <font color="red">
-            @Html.ValidationMessageFor(m => m.FuelType)
-        </font> <br />
+    @:  Üzemanyag <br />
+    <select name="fueltype" value="@Model.FuelType">
+        <option value="0">Benzin</option>
+        <option value="1">Dízel</option>
+    </select> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.FuelType)
+    </font> <br />
 
-        @: Leírás <br />
-        <input type="number" name="description" value="@Model.Description" /> <br />
-        <font color="red">
-            @Html.ValidationMessageFor(m => m.Description)
-        </font> <br />
+    @: Leírás <br />
+    <textarea type="text" name="description" value="@Model.Description" placeholder="Leírás....." cols="40" rows="5"></textarea> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Description)
+    </font> <br />
 
-        @: Fénykép <br />
-        <input type="file" name="image" /> <br />
-        <input type="submit" value="Mentés" />
-    }
+    @: Fénykép <br />
+    <input type="file" name="image" /> <br />
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+    <input type="submit" value="Mentés" />
+}
 
-</body>
-</html>
+
+
 
