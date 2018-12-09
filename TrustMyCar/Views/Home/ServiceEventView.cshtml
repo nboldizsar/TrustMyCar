@@ -1,0 +1,19 @@
+﻿@model TrustMyCar.BussinessObjects.CarData.ServiceEvent
+
+@{
+    ViewData["Title"] = "ServiceEventView";
+}
+
+<h2>Szervizadat</h2>
+
+<div>
+
+    <img width="200" src="@Url.Action("GetServiceEventImage", new {id=Model.Id})" /><br /><br />
+
+    Tárgy: <br />
+    @Html.DisplayFor(model => model.Name)<br /><br />
+
+    Leírás: <br />
+    @Html.TextAreaFor(model => model.Descpription, new { @readonly = "readonly" })
+
+</div>

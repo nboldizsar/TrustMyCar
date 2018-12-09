@@ -1,7 +1,39 @@
-﻿
+﻿@model TrustMyCar.ViewModels.OperatingViewModel
+
 @{
     ViewData["Title"] = "OperatingCostDetail";
 }
 
-<h2>OperatingCostDetail</h2>
+<h2>Új üzemeltetési költség</h2>
+
+
+@using (Html.BeginForm("OperatingCostDetail", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @: Megnevezés <br />
+    <input type="text" name="name" value="@Model.Name" /> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Name)
+    </font> <br />
+
+    @: Leírás <br />
+    <textarea type="text" name="description" value="@Model.Description" placeholder="Leírás....." cols="40" rows="5"></textarea> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Description)
+    </font> <br />
+
+    @: Ár <br />
+    <input type="number" name="price" value="@Model.Price" /> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Price)
+    </font> <br />
+
+    @:  Típus <br />
+    <select name="fueltype" value="@Model.Type">
+        <option value="0">Üzemanyagköltség</option>
+        <option value="1">Egyéb</option>
+    </select> <br />
+    <input hidden name="carid" value="@Model.CarId" />
+    <input type="submit" value="Mentés" />
+}
+
 

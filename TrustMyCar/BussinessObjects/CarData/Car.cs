@@ -13,8 +13,8 @@ namespace TrustMyCar.BussinessObjects.CarData
         [Key]
         public int Id { get; set; }
         public BaseUser Owner { get; set; }
-        public IEnumerable<ServiceEvent> ServiceEvents { get; set; }
-        public IEnumerable<OperatingCost> OperatingCosts { get; set; }
+        public virtual List<ServiceEvent> ServiceEvents { get; set; }
+        public virtual List<OperatingCost> OperatingCosts { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public string Type { get; set; }
@@ -29,8 +29,8 @@ namespace TrustMyCar.BussinessObjects.CarData
 
         public Car()
         {
-            this.ServiceEvents = new List<ServiceEvent>();
-            this.OperatingCosts = new List<OperatingCost>();
+            this.ServiceEvents = this.ServiceEvents ?? new List<ServiceEvent>();
+            this.OperatingCosts = this.OperatingCosts ?? new List<OperatingCost>();
         }
     }
 }

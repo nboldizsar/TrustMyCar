@@ -13,10 +13,12 @@ namespace TrustMyCar.BussinessObjects.CarData
         [Key]
         public int Id { get; set; }
         public Car Car { get; set; }
-        public IEnumerable<ServiceBill> ServiceBills { get; set; }
+        //public IEnumerable<ServiceBill> ServiceBills { get; set; }
         public string Name { get; set; }
         public string Descpription { get; set; }
-        
+        public byte[] Image { get; set; }
+        public string ContentType { get; set; }
+
         #endregion Properties
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrustMyCar.Data;
 
 namespace TrustMyCar.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181119180013_Virtual")]
+    partial class Virtual
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,6 +195,27 @@ namespace TrustMyCar.Migrations
                     b.ToTable("OperatingCost");
                 });
 
+            modelBuilder.Entity("TrustMyCar.BussinessObjects.CarData.ServiceBill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ContentType");
+
+                    b.Property<string>("Name");
+
+                    b.Property<byte[]>("PhotoData");
+
+                    b.Property<int?>("ServiceEventId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceEventId");
+
+                    b.ToTable("ServiceBill");
+                });
+
             modelBuilder.Entity("TrustMyCar.BussinessObjects.CarData.ServiceEvent", b =>
                 {
                     b.Property<int>("Id")
@@ -201,11 +224,7 @@ namespace TrustMyCar.Migrations
 
                     b.Property<int?>("CarId");
 
-                    b.Property<string>("ContentType");
-
                     b.Property<string>("Descpription");
-
-                    b.Property<byte[]>("Image");
 
                     b.Property<string>("Name");
 
@@ -324,6 +343,13 @@ namespace TrustMyCar.Migrations
                     b.HasOne("TrustMyCar.BussinessObjects.CarData.Car", "Car")
                         .WithMany("OperatingCosts")
                         .HasForeignKey("CarId");
+                });
+
+            modelBuilder.Entity("TrustMyCar.BussinessObjects.CarData.ServiceBill", b =>
+                {
+                    b.HasOne("TrustMyCar.BussinessObjects.CarData.ServiceEvent", "ServiceEvent")
+                        .WithMany("ServiceBills")
+                        .HasForeignKey("ServiceEventId");
                 });
 
             modelBuilder.Entity("TrustMyCar.BussinessObjects.CarData.ServiceEvent", b =>

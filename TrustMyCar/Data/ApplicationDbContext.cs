@@ -16,5 +16,9 @@ namespace TrustMyCar.Data
         }
 
         public DbSet<Car> Cars { get; set; }
+
+        public DbSet<ServiceEvent> ServiceEvent { get; set; }
+
+        public DbSet<TrustMyCar.BussinessObjects.CarData.OperatingCost> OperatingCost { get; set; }
     }
 }

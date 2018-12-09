@@ -1,7 +1,28 @@
-﻿
+﻿@model TrustMyCar.ViewModels.ServiceEventViewModel
+
 @{
     ViewData["Title"] = "ServiceEventDetail";
 }
 
-<h2>ServiceEventDetail</h2>
+<h2>Új szervíz esemény</h2>
 
+@using (Html.BeginForm("ServiceEventDetail", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @: Megnevezés <br />
+    <input type="text" name="name" value="@Model.Name" /> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Name)
+    </font> <br />
+
+    @: Leírás <br />
+    <textarea type="text" name="descpription" value="@Model.Descpription" placeholder="Leírás....." cols="40" rows="5"></textarea> <br />
+    <font color="red">
+        @Html.ValidationMessageFor(m => m.Descpription)
+    </font> <br />
+
+    @: Számlakép <br />
+    <input type="file" name="image" /> <br />
+
+    <input hidden name="carid" value="@Model.CarId" />
+    <input type="submit" value="Mentés" />
+}

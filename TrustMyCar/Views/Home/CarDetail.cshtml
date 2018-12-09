@@ -43,22 +43,23 @@
     </font> <br />
 
     @: Gyártási év <br />
-    <input type="date" name="date" value="@Model.Date" /> <br />
+    @*<input type="date" name="date" value="@Model.Date" /> <br />*@
+    <input asp-for="Date" />
+    @*@Html.EditorFor(m => m.Date, new { htmlAttributes = new { @class = "datepicker", @Value = Model.Date.ToString("yyyy/MM/dd") } })*@
     <font color="red">
         @Html.ValidationMessageFor(m => m.Date)
     </font> <br />
 
     @:  Üzemanyag <br />
-    <select name="fueltype" value="@Model.FuelType">
-        <option value="0">Benzin</option>
-        <option value="1">Dízel</option>
-    </select> <br />
+    @Html.DropDownList("FuelType",
+    Html.GetEnumSelectList<TrustMyCar.Utils.Enums.FuelType>())
+    <br />
     <font color="red">
         @Html.ValidationMessageFor(m => m.FuelType)
     </font> <br />
 
     @: Leírás <br />
-    <textarea type="text" name="description" value="@Model.Description" placeholder="Leírás....." cols="40" rows="5"></textarea> <br />
+    <textarea type="text" name="description" placeholder="Leírás....." value="@Model.Description" cols="40" rows="5">@Model.Description</textarea> <br />
     <font color="red">
         @Html.ValidationMessageFor(m => m.Description)
     </font> <br />
@@ -66,6 +67,7 @@
     @: Fénykép <br />
     <input type="file" name="image" /> <br />
 
+    <input hidden type="number" name="id" value="@Model.Id" />
     <input type="submit" value="Mentés" />
 }
 

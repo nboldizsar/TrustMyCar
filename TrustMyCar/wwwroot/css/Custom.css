@@ -1,0 +1,11 @@
+﻿.Titleh1{
+    margin-bottom : 8px;
+}
+
+.ImgCenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: 250px;
+}

@@ -40,53 +40,11 @@ namespace TrustMyCar.ViewModels
 
         public IFormFile Image { get; set; }
 
-        public Car Car { get; private set; }
-
-        /// <summary>
-        /// Konstruktor
-        /// </summary>
-        /// <param name = "car" > Az autó példány amire vonatkozik.Üres esetén új példány jön létre.</param>
-        public CarViewModel(Car car)
-        {
-            this.Car = car;
-        }
+        public int Id { get; set; }
 
         public CarViewModel()
         {
-            this.Car = new Car();
-        }
-
-        /// <summary>
-        /// Visszaadja a viewModel értékek alapján létrejött/módosított autó példányt
-        /// FIGYELEM: Ekkor megtörténik az értékadás, szóval menteni kéne!
-        /// </summary>
-        /// <returns></returns>
-        public Car GetModifiedCar()
-        {
-            byte[] pic = null;
-            if (this.Image != null)
-            {
-                pic = new byte[this.Image.Length];
-                using (var stream = this.Image.OpenReadStream())
-                {
-                    stream.Read(pic, 0, (int)this.Image.Length);
-                }
-            }
-
-            Car.Brand = this.Brand;
-            Car.CubicCapacity = this.CubicCapacity;
-            Car.Date = this.Date;
-            Car.Description = this.Description;
-            Car.FuelType = this.FuelType;
-            Car.Kilometer = this.Kilometer;
-            Car.Model = Car.Model;
-            Car.OperatingCosts = Car.OperatingCosts;
-            Car.Power = this.Power;
-            Car.Type = this.Type;
-            Car.Image = pic;
-            Car.ContentType = this.Image.ContentType;
-
-            return Car;
+            this.Id = -1;
         }
     }
 }

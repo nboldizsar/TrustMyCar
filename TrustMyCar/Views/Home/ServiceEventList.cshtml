@@ -1,7 +1,40 @@
-﻿
+﻿@model TrustMyCar.BussinessObjects.CarData.Car
+
 @{
-    ViewData["Title"] = "ServiceEventList";
+    ViewData["Title"] = "ServiceEventist";
 }
 
-<h2>ServiceEventList</h2>
+<h2>Szervíz adatok</h2>
 
+<p>
+    <a asp-action="ServiceEventDetail" asp-route-id="@Model.Id">Új szervíz esemény felitele</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Megnevezés
+            </th>
+            <th>
+                Leírás
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ServiceEvents) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descpription)
+            </td>
+            <td>
+                <a asp-action="ServiceEventView" asp-route-id="@item.Id">Részletek</a> |
+                <a asp-action="ServiceEventDelete" asp-route-id="@item.Id">Törlés</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

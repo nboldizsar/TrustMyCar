@@ -1,7 +1,53 @@
-﻿
+﻿@model TrustMyCar.BussinessObjects.CarData.Car
+
 @{
     ViewData["Title"] = "OperatingCostList";
 }
 
-<h2>OperatingCostList</h2>
+<h2>Fenntartási költségek</h2>
 
+<img width="200" src="@Url.Action("GetImage", new {id=Model.Id})" />
+
+<p>
+    <a asp-action="OperatingCostDetail" asp-route-id="@Model.Id">Új fenntartási költség</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Megnevezés
+            </th>
+            <th>
+                Leírás
+            </th>
+            <th>
+                Ár
+            </th>
+            <th>
+                Típus
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.OperatingCosts) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                <a asp-action="OperatinCostDetails" asp-route-id="@item.Id">Details</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

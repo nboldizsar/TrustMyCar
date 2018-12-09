@@ -1,7 +1,32 @@
-﻿
+﻿@model TrustMyCar.ViewModels.CarTransferViewModel
+
 @{
     ViewData["Title"] = "CarTransfer";
 }
 
-<h2>CarTransfer</h2>
+<h2>Meglévő autó átruházása másik felhasználónak</h2>
 
+<h4>Az kiválasztott autó:</h4>
+
+<div class="container">
+
+    <div>
+        <img class="ImgCenter" src="@Url.Action("GetImage", new {id=Model.TransferCar.Id})" />
+    </div>
+
+    @using (Html.BeginForm("CarTransfer", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @: Új tulajdonos:<br />
+        <input type="text" hidden name="carid" value="@Model.TransferCar.Id" />
+
+        @Html.DropDownList("UserId",Model.AllUsers.Select(item => new SelectListItem
+        {
+            Value = item.Id.ToString(),
+            Text = item.UserName.ToString(),
+            Selected = false
+        }))
+        <br />
+        <input type="submit" value="Mentés" />
+    }
+
+</div>
