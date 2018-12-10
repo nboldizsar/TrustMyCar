@@ -4,10 +4,11 @@
     ViewData["Title"] = "OperatingCostList";
 }
 
-<h2>Fenntartási költségek</h2>
+<h2>Fenntartási költségek</h2><br />
 
-<img width="200" src="@Url.Action("GetImage", new {id=Model.Id})" />
-
+<img width="350" src="@Url.Action("GetImage", new {id=Model.Id})" />
+<br />
+<br />
 <p>
     <a asp-action="OperatingCostDetail" asp-route-id="@Model.Id">Új fenntartási költség</a>
 </p>

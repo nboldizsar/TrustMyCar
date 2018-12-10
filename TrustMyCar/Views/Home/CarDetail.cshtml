@@ -4,6 +4,8 @@
     ViewData["Title"] = "Autó adatok";
 }
 
+<h2>Új autó felvétele</h2> <br />
+
 @using (Html.BeginForm("CarDetail", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @: Márka <br />
@@ -48,7 +50,7 @@
     @*@Html.EditorFor(m => m.Date, new { htmlAttributes = new { @class = "datepicker", @Value = Model.Date.ToString("yyyy/MM/dd") } })*@
     <font color="red">
         @Html.ValidationMessageFor(m => m.Date)
-    </font> <br />
+    </font> <br /><br />
 
     @:  Üzemanyag <br />
     @Html.DropDownList("FuelType",
